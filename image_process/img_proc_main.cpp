@@ -248,6 +248,8 @@ void convert_image(map<string, vector<string>>& temp, string dist_path, string b
             temp_str = vec_Elemetn->substr(begin_index, end_index);
 //            cout<< "/////"<<temp_str<<endl;
             commond = base_commond+"  "+*vec_Elemetn+"  -o ";
+//            HB03787#TRAIN#T72#SN_812#17_DEG.JPG
+//            dist = dist_path + temp_str + "#" + iElement->first;
             dist = dist_path + temp_str + "#" + iElement->first;
             commond = commond + dist + "   -e   -qf";
             system(commond.c_str());
@@ -257,20 +259,21 @@ void convert_image(map<string, vector<string>>& temp, string dist_path, string b
 
 int main(){
     const bool b_HTM = true;
-    const bool b_SLICY = false;
+    const bool b_SLICY = true;
     vector<string> base_path;
     vector<string> target_dir;
 
-    const string dist_path = "/home/aurora/hdd/workspace/data/sar_total_data/";
+//    const string dist_path = "/home/aurora/hdd/workspace/data/sar_total_data/";
+    const string dist_path = "/home/aurora/hdd/workspace/data/sar_total_data_test/";
     const string commond = "/home/aurora/hdd/workspace/data/MSTAR_PUBLIC_TARGETS_CHIPS_T72_BMP2_BTR70_SLICY/mstar2jpeg/mstar2jpeg -i";
     map<string, vector<string>> files;
     map<string, string> file_names;
     getPath(&base_path);
     for(auto path_ = base_path.begin(); path_<base_path.end(); path_++){
-        read_dir(*path_, &target_dir, b_HTM, b_SLICY);
+//        read_dir(*path_, &target_dir, b_HTM, b_SLICY);
     }
     string mixture_target = "/home/aurora/hdd/workspace/data/mstar/MSTAR_Data/MSTAR_PUBLIC_TARGETS_CHIPS_T72_BMP2_BTR70_SLICY/";
-    read_dir_mixture(mixture_target, &target_dir, false, b_HTM, b_SLICY);
+    read_dir_mixture(mixture_target, &target_dir, true, b_HTM, b_SLICY);
     gen_filename(&file_names);
 
     for(auto dir = target_dir.begin(); dir<target_dir.end(); dir++){
